@@ -10,22 +10,22 @@
     html, body {
         margin: 0;
     }
+
     .container {
         background-color: black;
         width: 100%;
         height: 100vh;
         display: flex;
-        flex-direction: row;
         flex-wrap: wrap;
-
     }
+
     .color {
         height: 100%;
         display: flex;
         justify-content: center;
         align-items: flex-end;
         cursor: pointer;
-        transition: 0.3s opacity    ;
+        transition: 0.2s opacity;
     }
 
     .color:hover {
@@ -33,19 +33,51 @@
     }
 
     .color span {
+        font-size: 2rem;
+        margin-bottom: 2rem;
         color: white;
-        font-size: 1.5rem;
-        padding: 0.5rem;
-        text-align: center;
-        width: 100%;
-        display: block;
-        text-shadow: 1px 1px 1px black;
+        text-shadow: 2px 2px black;
+        opacity: 0;
+    }
+
+    .color:hover span {
+        opacity: 1;
+    }
+
+    #form {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10;
+    }
+
+    #form input[type="text"] {
+        font-size: 2rem;
+        outline: 0;
+        border: 2px solid white;
+        background-color: #f2f2f2;
+        padding: 20px;
+        width: 400px;
+    }
+
+    .btn_generate {
+        background-color: #4caf50;
+        padding: 20px;
+        font-size: 2rem;
+        color: white;
+        border: 2px solid white;
+        transition: 0.2s opacity;
+    }
+
+    .btn_generate:hover {
+        opacity: 0.8;
     }
 </style>
 <body>
     <form id="form">
-        <input type="text" name="query" placeholder="Enter a color">
-        <button type="submit">Submit</button>
+        <input type="text" name="query" placeholder="색상을 입력하세요">
+        <button type="submit" class="btn_generate">생성하기</button>
     </form>
     
     <div class="container"></div>
