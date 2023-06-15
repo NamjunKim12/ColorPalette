@@ -5,122 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Color Palette Generator</title>
+    <link rel="stylesheet" href="app.css">
 </head>
-<style>
-    html, body {
-        margin: 0;
-    }
-
-    .container {
-        background-color: black;
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    .color {
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        cursor: pointer;
-        transition: 0.2s opacity;
-    }
-
-    .color:hover {
-        opacity: 0.8;
-    }
-
-    .color span {
-        font-size: 2rem;
-        margin-bottom: 2rem;
-        color: white;
-        text-shadow: 2px 2px black;
-        opacity: 0;
-    }
-
-    .color:hover span {
-        opacity: 1;
-    }
-
-    #form {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 10;
-    }
-
-    #form input[type="text"] {
-        font-size: 2rem;
-        outline: 0;
-        border: 2px solid white;
-        background-color: #f2f2f2;
-        padding: 20px;
-        width: 400px;
-    }
-
-    .btn_generate {
-        background-color: #4caf50;
-        padding: 20px;
-        font-size: 2rem;
-        color: white;
-        border: 2px solid white;
-        transition: 0.2s opacity;
-    }
-
-    .btn_generate:hover {
-        opacity: 0.8;
-    }
-</style>
 <body>
     <form id="form">
         <input type="text" name="query" placeholder="색상을 입력하세요">
         <button type="submit" class="btn_generate">생성하기</button>
     </form>
-    
     <div class="container"></div>
-
-    <script>
-        const form = document.querySelector('#form');
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const query = form.elements.query.value;
-            fetch("/palette",{
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: new URLSearchParams({
-                    query: query
-                })
-            })
-            .then(res => res.json())
-            .then(data => {
-                const colors = data.colors;
-                const container = document.querySelector('.container');
-                container.innerHTML = "";
-                for(const color of colors){
-                    const div = document.createElement("div");
-                    div.classList.add("color");
-                    div.style.backgroundColor = color;
-                    div.style.width = `calc(100% / ${colors.length})`;
-
-                    div.addEventListener('click', () => {
-                        navigator.clipboard.writeText(color);
-                    })
-
-                    const span = document.createElement("span");
-                    span.textContent = color;
-
-                    div.appendChild(span);
-                    container.appendChild(div);
-                }
-
-            })
-
-        })
-    </script>
+    <script src="app.js" defer></script>
 </body>
 </html>
