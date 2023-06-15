@@ -7,6 +7,9 @@
     <title>Color Palette Generator</title>
 </head>
 <style>
+    html, body {
+        margin: 0;
+    }
     .container {
         background-color: black;
         width: 100%;
@@ -18,6 +21,25 @@
     }
     .color {
         height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        cursor: pointer;
+        transition: 0.3s opacity    ;
+    }
+
+    .color:hover {
+        opacity: 0.8;
+    }
+
+    .color span {
+        color: white;
+        font-size: 1.5rem;
+        padding: 0.5rem;
+        text-align: center;
+        width: 100%;
+        display: block;
+        text-shadow: 1px 1px 1px black;
     }
 </style>
 <body>
