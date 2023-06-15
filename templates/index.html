@@ -7,10 +7,6 @@
     <title>Color Palette Generator</title>
 </head>
 <style>
-
-    h1 {
-        color : purple;
-    }
     .container {
         background-color: black;
         width: 100%;
@@ -18,14 +14,13 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        
+
     }
     .color {
         height: 100%;
     }
 </style>
 <body>
-    <h1>hello, world!!</h1> 
     <form id="form">
         <input type="text" name="query" placeholder="Enter a color">
         <button type="submit">Submit</button>
@@ -51,12 +46,21 @@
             .then(data => {
                 const colors = data.colors;
                 const container = document.querySelector('.container');
+                container.innerHTML = "";
                 for(const color of colors){
                     const div = document.createElement("div");
                     div.classList.add("color");
                     div.style.backgroundColor = color;
                     div.style.width = `calc(100% / ${colors.length})`;
 
+                    div.addEventListener('click', () => {
+                        navigator.clipboard.writeText(color);
+                    })
+
+                    const span = document.createElement("span");
+                    span.textContent = color;
+
+                    div.appendChild(span);
                     container.appendChild(div);
                 }
 
